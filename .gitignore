@@ -6,7 +6,7 @@
 
 # bundler
 /.bundle
-/vendor/bundler
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
