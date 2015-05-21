@@ -1,2 +1,25 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Register') %>
+<h1>Register</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', object: @user %>
+  <div class="row">
+    <div class="large-12 column">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 column">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 column">
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+  <%= f.submit "Register", class: "button" %>
+<% end %>
