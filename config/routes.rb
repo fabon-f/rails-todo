@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,8 +7,12 @@ Rails.application.routes.draw do
 
   match '/help', to: 'static_pages#help', via: 'get'
 
-  resources :users, only: :create
+  resources :users, only: [:create, :index]
   match '/register', to: 'users#new', via: 'get'
+
+  resources :user_sessions, only: [:new, :create, :destroy], path: 'sessions'
+  match '/login', to: 'user_sessions#new', via: 'get'
+  match '/logout', to: 'user_sessions#destroy', via: 'delete'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -40,7 +40,10 @@ RSpec.describe "User Pages", type: :request do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
-        it { should have_selector('div.alert-box.success', text: 'Welcome') }
+        it { should have_selector('div.alert-box.radius.success', text: 'Welcome') }
+        it { should have_link("Log out") }
+        it { should_not have_link("Log in") }
+        it { should_not have_link("Register") }
       end
     end
   end

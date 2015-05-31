@@ -5,12 +5,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    password = @user.password
     if @user.save
+      login(@user.email, password)
       flash[:success] = "Welcome to the #{view_context.site_name}!"
       redirect_to root_url
     else
       render 'new'
     end
+  end
+
+  def index
+    
   end
 
   private def user_params

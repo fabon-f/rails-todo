@@ -1,0 +1,21 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<%= form_tag user_sessions_path, :method => :post do %>
+  <div class="row">
+    <div class="large-12 column">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 column">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to "Register Now", register_path %>
+  </div>
+  <%= submit_tag "Log in", class: "button" %>
+<% end %>
