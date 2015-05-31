@@ -1,0 +1,22 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to site_name, :root %></a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+      <% if current_user %>
+        <li><%= link_to "Log out", logout_path, method: 'delete' %></li>
+      <% else %>
+        <li><%= link_to "Log in", login_path %></li>
+        <li><%= link_to "Register", register_path %></li>
+      <% end %>
+    </ul>
+  </section>
+</nav>

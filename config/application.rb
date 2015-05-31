@@ -32,7 +32,8 @@ module ToDo
     config.active_record.raise_in_transactional_callbacks = true
     config.generators do |g|
       g.helper false
-      g.test_framework :rspec, view_specs: false, helper_specs: false, controller_specs: false
+      g.test_framework :rspec, view_specs: false, helper_specs: false, controller_specs: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
       g.assets false
     end
   end
