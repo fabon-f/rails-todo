@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :index]
   match '/register', to: 'users#new', via: 'get'
 
-  resources :user_sessions, only: [:new, :create, :destroy], path: 'sessions'
+  resources :user_sessions, only: [:new, :create, :destroy, :index], path: 'sessions'
   match '/login', to: 'user_sessions#new', via: 'get'
   match '/logout', to: 'user_sessions#destroy', via: 'delete'
 

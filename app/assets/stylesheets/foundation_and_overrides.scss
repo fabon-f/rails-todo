@@ -1488,5 +1488,9 @@ $include-html-global-classes: $include-html-classes;
 @import 'foundation';
 
 .alert-box.error {
-  @extend .alert-box.alert
+  @extend .alert-box.alert;
+}
+
+.alert-box.notice {
+  @extend .alert-box.info;
 }

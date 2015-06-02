@@ -30,6 +30,11 @@ RSpec.describe "Authentication", type: :request do
       it { should have_link('Log out', href: logout_path) }
       it { should_not have_link('Log in', href: login_path) }
 
+      describe "after visiting login page" do
+        before { visit login_path }
+        it { should have_notice_message('You are already logged in') }
+      end
+
       describe "followed by logout" do
         before { click_link "Log out" }
         it { should have_link('Log in') }
