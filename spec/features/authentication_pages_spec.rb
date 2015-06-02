@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Authentication", type: :request do
+RSpec.describe "Authentication", type: :feature do
   subject { page }
   describe "login page" do
     before { visit login_path }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User Pages", type: :request do
+RSpec.describe "User Pages", type: :feature do
   subject { page }
   describe "register page" do
     before { visit register_path }
