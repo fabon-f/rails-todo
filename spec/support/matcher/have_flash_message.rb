@@ -9,3 +9,9 @@ RSpec::Matchers.define :have_notice_message do |message|
     expect(page).to have_selector('div.alert-box.radius.notice', text: message)
   end
 end
+
+RSpec::Matchers.define :have_success_message do |message|
+  match do |page|
+    expect(page).to have_selector('div.alert-box.radius.success', text: message)
+  end
+end

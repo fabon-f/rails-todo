@@ -20,6 +20,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:root, success: 'Logged out!')
+    redirect_to(:root, flash: { success: 'Logged out!' })
   end
 end

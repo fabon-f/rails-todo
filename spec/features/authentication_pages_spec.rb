@@ -42,6 +42,7 @@ RSpec.describe "Authentication", type: :feature do
 
       describe "followed by logout" do
         before { click_link "Log out" }
+        it { should have_success_message('Logged out') }
         it { should have_link('Log in') }
         it { should have_link('Register') }
         it { should_not have_link('Log out') }
