@@ -42,9 +42,10 @@ RSpec.describe "User Pages", type: :feature do
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_selector('div.alert-box.radius.success', text: 'Welcome') }
-        it { should have_link("Log out") }
-        it { should_not have_link("Log in") }
-        it { should_not have_link("Register") }
+        it { should have_link("Log out", href: logout_path) }
+        it { should have_link("Profile", href: user_path(user.username)) }
+        it { should_not have_link("Log in", href: login_path) }
+        it { should_not have_link("Register", href: register_path) }
         it "should redirect to user page" do
           expect(current_url).to eq(user_url(user.username))
         end
