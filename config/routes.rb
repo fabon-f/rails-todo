@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :index]
   match '/register', to: 'users#new', via: 'get'
+  match '/users/:username', to: 'users#show', via: 'get', as: :user
 
   resources :user_sessions, only: [:new, :create, :destroy, :index], path: 'sessions'
   match '/login', to: 'user_sessions#new', via: 'get'

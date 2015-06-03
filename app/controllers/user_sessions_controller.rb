@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     if current_user
       redirect_to :root, notice: 'You are already logged in'
     elsif @user = login(params[:email].downcase, params[:password])
-      redirect_back_or_to(:root, success: 'Login successful')
+      redirect_back_or_to(user_url(@user.username), success: 'Login successful')
     else
       flash.now[:error] = 'Invalid email or password'
       render action: 'new'

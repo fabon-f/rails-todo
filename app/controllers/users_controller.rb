@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       login(@user.email, password)
       flash[:success] = "Welcome to the #{view_context.site_name}!"
-      redirect_to root_url
+      redirect_to user_url(@user.username)
     else
       render 'new'
     end
@@ -19,7 +19,11 @@ class UsersController < ApplicationController
     
   end
 
+  def show
+    @user = User.find_by(username: params[:username])
+  end
+
   private def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :username, :password, :password_confirmation)
   end
 end

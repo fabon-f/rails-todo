@@ -30,6 +30,7 @@ RSpec.describe "User Pages", type: :feature do
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "HogeFuga"
         fill_in "Password Confirmation", with: "HogeFuga"
+        fill_in "Username", with: "example_user"
       end
 
       it "should create a user" do
@@ -44,7 +45,17 @@ RSpec.describe "User Pages", type: :feature do
         it { should have_link("Log out") }
         it { should_not have_link("Log in") }
         it { should_not have_link("Register") }
+        it "should redirect to user page" do
+          expect(current_url).to eq(user_url(user.username))
+        end
       end
     end
+  end
+
+  describe "profile page" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit user_path(user.username) }
+    it { should have_selector('h1', text: user.username) }
+    it { should have_title(user.username) }
   end
 end

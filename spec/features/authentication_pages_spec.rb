@@ -29,6 +29,10 @@ RSpec.describe "Authentication", type: :feature do
 
       it { should have_link('Log out', href: logout_path) }
       it { should_not have_link('Log in', href: login_path) }
+      it { should_not have_link('Register', href: register_path) }
+      it "should redirect to user page" do
+        expect(current_url).to eq(user_url(user.username))
+      end
 
       describe "after visiting login page" do
         before { visit login_path }

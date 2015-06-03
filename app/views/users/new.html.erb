@@ -21,5 +21,11 @@
       <%= f.password_field :password_confirmation %>
     </div>
   </div>
+  <div class="row">
+    <div class="large-12 column">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
+  </div>
   <%= f.submit "Register", class: "button" %>
 <% end %>
