@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = User.new(email: "user@example.com", password: 'foobarbaz', password_confirmation: 'foobarbaz')
+    @user = User.new(email: "user@example.com", password: 'foobarbaz', password_confirmation: 'foobarbaz', username: 'example')
   end
 
   subject { @user }
@@ -63,8 +63,46 @@ RSpec.describe User, type: :model do
 
   describe "when email address is already taken" do
     before do
-      user_with_same_email = User.new(email: "USER@examPLe.com", password: 'hogefuga', password_confirmation: 'hogefuga')
+      user_with_same_email = User.new(email: "USER@examPLe.com", password: 'hogefuga', password_confirmation: 'hogefuga', username: 'example2')
       user_with_same_email.save
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when username is invalid" do
+    it "should be invalid" do
+      usernames = %w[hoge-fuga hoge! hoge& fuga)]
+      usernames.each do |invalid_username|
+        @user.username = invalid_username
+        expect(@user).not_to be_valid
+      end
+    end
+  end
+
+  describe "when username is valid" do
+    it "should be valid" do
+      usernames = %w[hoge fuga hoge2 __fu__g_]
+      usernames.each do |valid_username|
+        @user.username = valid_username
+        expect(@user).to be_valid
+      end
+    end
+  end
+
+  describe "when username has big letters" do
+    before do
+      @user.username = "EXamplE_User"
+      @user.save
+    end
+    it "username should equal to downcase" do
+      expect(@user.reload.username).to eq("example_user")
+    end
+  end
+
+  describe "when username is already taken" do
+    before do
+      user_with_same_username = User.new(email: "user2@example.com", password: 'foobarbaz', password_confirmation: 'foobarbaz', username: 'ExaMplE')
+      user_with_same_username.save
     end
     it { should_not be_valid }
   end
