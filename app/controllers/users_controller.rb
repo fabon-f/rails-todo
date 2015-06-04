@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       login(@user.email, password)
       flash[:success] = "Welcome to the #{Settings.site_name}!"
-      redirect_to user_url(@user.username)
+      redirect_to @user
     else
       render 'new'
     end

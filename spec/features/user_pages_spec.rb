@@ -43,11 +43,11 @@ RSpec.describe "User Pages", type: :feature do
 
         it { should have_selector('div.alert-box.radius.success', text: 'Welcome') }
         it { should have_link("Log out", href: logout_path) }
-        it { should have_link("Profile", href: user_path(user.username)) }
+        it { should have_link("Profile", href: user_path(user)) }
         it { should_not have_link("Log in", href: login_path) }
         it { should_not have_link("Register", href: register_path) }
         it "should redirect to user page" do
-          expect(current_url).to eq(user_url(user.username))
+          expect(current_url).to eq(user_url(user))
         end
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe "User Pages", type: :feature do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user.username) }
+    before { visit user_path(user) }
     it { should have_selector('h1', text: user.username) }
     it { should have_title(user.username) }
   end
