@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
 
-  match '/help', to: 'static_pages#help', via: 'get'
+  get '/help', to: 'static_pages#help'
 
   resources :users, only: [:create, :index]
-  match '/register', to: 'users#new', via: 'get'
-  match '/users/:username', to: 'users#show', via: 'get', as: :user
+  get '/register', to: 'users#new'
+  get '/users/:username', to: 'users#show', as: :user
 
   resources :user_sessions, only: [:new, :create, :destroy, :index], path: 'sessions'
-  match '/login', to: 'user_sessions#new', via: 'get'
-  match '/logout', to: 'user_sessions#destroy', via: 'delete'
+  get '/login', to: 'user_sessions#new'
+  delete '/logout', to: 'user_sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
