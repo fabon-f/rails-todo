@@ -7,11 +7,8 @@ Rails.application.routes.draw do
 
   get '/help', to: 'static_pages#help'
 
-  resources :users, only: [:create, :index]
+  resources :users, param: :username, only: [:create, :index, :show, :edit, :update]
   get '/register', to: 'users#new'
-  get '/users/:username', to: 'users#show', as: :user
-  get '/users/:username/edit', to: 'users#edit', as: :edit_user
-  patch '/users/:username', to: 'users#update'
 
   resources :user_sessions, only: [:new, :create, :destroy, :index], path: 'sessions'
   get '/login', to: 'user_sessions#new'
