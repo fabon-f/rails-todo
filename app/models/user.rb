@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
+
+  def correct_password?(password)
+    User.authenticate(self.email, password) == self
+  end
 end

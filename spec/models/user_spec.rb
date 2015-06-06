@@ -106,4 +106,19 @@ RSpec.describe User, type: :model do
     end
     it { should_not be_valid }
   end
+
+  describe "correct_password? method" do
+    before { @user.save }
+    describe "when password is correct" do
+      it "should return true" do
+        expect(@user.correct_password? 'foobarbaz').to be true
+      end
+    end
+
+    describe "when password is incorrect" do
+      it "should return false" do
+        expect(@user.correct_password? 'hogefuga').to be false
+      end
+    end
+  end
 end

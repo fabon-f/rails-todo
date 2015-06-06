@@ -19,6 +19,26 @@ class UsersController < ApplicationController
     
   end
 
+  def edit
+    @user = User.find_by(username: params[:username])
+  end
+
+  def update
+    @user = User.find_by(username: params[:username])
+
+    if @user.correct_password? params[:user][:current_password]
+      if @user.update_attributes(user_params)
+        flash[:success] = "Profile updated"
+        redirect_to @user
+      else
+        render 'edit'
+      end
+    else
+      flash.now[:error] = 'Current password is incorrect'
+      render 'edit'
+    end
+  end
+
   def show
     @user = User.find_by(username: params[:username])
   end

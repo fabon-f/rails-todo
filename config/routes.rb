@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :index]
   get '/register', to: 'users#new'
   get '/users/:username', to: 'users#show', as: :user
+  get '/users/:username/edit', to: 'users#edit', as: :edit_user
+  patch '/users/:username', to: 'users#update'
 
   resources :user_sessions, only: [:new, :create, :destroy, :index], path: 'sessions'
   get '/login', to: 'user_sessions#new'

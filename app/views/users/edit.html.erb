@@ -1,5 +1,5 @@
-<% provide(:title, 'Register') %>
-<h1>Register</h1>
+<% provide :title, 'Edit profile' %>
+<h1>Edit profile</h1>
 
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
@@ -27,5 +27,11 @@
       <%= f.password_field :password_confirmation %>
     </div>
   </div>
-  <%= f.submit "Register", class: "button" %>
+  <div class="row">
+    <div class="large-12 column">
+      <%= f.label :current_password, "Current Password" %>
+      <%= f.password_field :current_password %>
+    </div>
+  </div>
+  <%= f.submit "Save Changes", class: "button" %>
 <% end %>
