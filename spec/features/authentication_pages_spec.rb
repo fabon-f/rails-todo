@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Authentication", type: :feature do
+RSpec.feature "Authentication", type: :feature do
   subject { page }
   describe "login page" do
     before { visit login_path }
@@ -24,7 +24,7 @@ RSpec.describe "Authentication", type: :feature do
       before do
         password = user.password
         user.save
-        capybara_login(user.email.upcase, password)
+        capybara_login(user.email.upcase, password, visit_login_path: false)
       end
 
       it { should have_link('Log out', href: logout_path) }

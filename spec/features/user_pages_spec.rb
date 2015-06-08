@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User Pages", type: :feature do
+RSpec.feature "User Pages", type: :feature do
   subject { page }
   describe "register page" do
     before { visit register_path }
@@ -65,7 +65,6 @@ RSpec.describe "User Pages", type: :feature do
     let(:password) { user.password }
     before do
       password # evaluate
-      visit login_path
       user.save
       capybara_login(user.email, password)
       visit edit_user_path(user)

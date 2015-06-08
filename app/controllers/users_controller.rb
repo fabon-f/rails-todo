@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -20,12 +23,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(username: params[:username])
+    # Look at correct_user
   end
 
   def update
-    @user = User.find_by(username: params[:username])
-
+    # look at correct_user
     if @user.correct_password? params[:user][:current_password]
       if @user.update_attributes(user_params)
         flash[:success] = "Profile updated"
@@ -45,5 +47,10 @@ class UsersController < ApplicationController
 
   private def user_params
     params.require(:user).permit(:email, :username, :password, :password_confirmation)
+  end
+
+  private def correct_user
+    @user = User.find_by(username: params[:username])
+    redirect_to root_url unless current_user == @user
   end
 end
