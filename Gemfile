@@ -26,6 +26,8 @@ gem 'sorcery'
 
 gem "rails_config"
 
+gem 'active_decorator'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
