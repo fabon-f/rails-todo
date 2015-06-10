@@ -15,7 +15,19 @@
     </div>
   </div>
   <div class="row">
-    <%= link_to "Register Now", register_path %>
+    <div class="large-12 column">
+      <%= check_box_tag :remember_me, 1 %>
+      <%= label_tag :remember_me %>
+    </div>
   </div>
-  <%= submit_tag "Log in", class: "button" %>
+  <div class="row">
+    <div class="large-12 column">
+      <%= link_to "Register Now", register_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 column">
+      <%= submit_tag "Log in", class: "button" %>
+    </div>
+  </div>
 <% end %>
