@@ -58,6 +58,15 @@ RSpec.feature "User Pages", type: :feature do
     before { visit user_path(user) }
     it { should have_selector('h1', text: user.username) }
     it { should have_title(user.username) }
+    it { should_not have_link('Edit all', href: edit_user_path(user)) }
+    describe "after login" do
+      let(:password) { FactoryGirl.build(:user).password }
+      before do
+        capybara_login user.email, password
+        visit user_path(user)
+      end
+      it { should have_link('Edit all', href: edit_user_path(user)) }
+    end
   end
 
   describe "edit" do

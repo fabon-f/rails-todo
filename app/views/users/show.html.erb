@@ -1,3 +1,4 @@
 <% provide(:title, @user.username) %>
 <h1><%= @user.username %></h1>
 <%= @user.gravatar %>
+<%= link_to 'Edit all', edit_user_path(@user) if current_user == @user %>
