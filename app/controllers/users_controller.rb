@@ -18,10 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    
-  end
-
   def edit
     # Look at correct_user
   end
