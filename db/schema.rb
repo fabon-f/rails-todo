@@ -20,14 +20,10 @@ ActiveRecord::Schema.define(version: 20150610104359) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
-    t.string   "activation_state"
-    t.string   "activation_token"
-    t.datetime "activation_token_expires_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
   end
 
-  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
