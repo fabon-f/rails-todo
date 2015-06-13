@@ -8,6 +8,8 @@ RSpec.describe User, type: :model do
   subject { @user }
   it { should be_valid }
 
+  it { should respond_to :tasks }
+
   describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
