@@ -8,8 +8,6 @@ RSpec.describe User, type: :model do
   subject { @user }
   it { should be_valid }
 
-  it { should respond_to :tasks }
-
   describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
@@ -120,6 +118,24 @@ RSpec.describe User, type: :model do
     describe "when password is incorrect" do
       it "should return false" do
         expect(@user.correct_password? 'hogefuga').to be false
+      end
+    end
+  end
+
+  describe "task association" do
+    before { @user.save }
+    let!(:task) { FactoryGirl.create(:task, user: @user) }
+    it { should respond_to :tasks }
+    it "should have tasks" do
+      expect(@user.tasks.to_a).to eq [task]
+    end
+
+    it "should destroy associated tasks" do
+      tasks = @user.tasks.to_a
+      @user.destroy
+      expect(tasks).not_to be_empty
+      tasks.each do |task|
+        expect(Task.where(id: task.id)).to be_empty
       end
     end
   end

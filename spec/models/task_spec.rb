@@ -16,4 +16,9 @@ RSpec.describe Task, type: :model do
     before { @task.user_id = nil }
     it { should_not be_valid }
   end
+
+  describe "when title is too long" do
+    before { @task.title = 'a' * 151 }
+    it { should_not be_valid }
+  end
 end
