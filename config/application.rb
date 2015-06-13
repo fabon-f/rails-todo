@@ -33,8 +33,7 @@ module ToDo
     config.autoload_paths << Rails.root.join('app/decorators')
     config.generators do |g|
       g.helper false
-      g.test_framework :rspec, view_specs: false, helper_specs: false, controller_specs: false, fixture: true
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.test_framework :rspec, view_specs: false, helper_specs: false, controller_specs: false, fixture: false
       g.assets false
     end
   end
