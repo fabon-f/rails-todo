@@ -4,9 +4,8 @@ RSpec.feature "Authorizations", type: :feature do
   subject { page }
   describe "for user not logged in" do
     let(:user) { FactoryGirl.build(:user) }
-    let(:password) { user.password }
+    let!(:password) { user.password }
     before do
-      password
       user.save
     end
 

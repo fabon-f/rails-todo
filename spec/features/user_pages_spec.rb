@@ -71,9 +71,8 @@ RSpec.feature "User Pages", type: :feature do
 
   describe "edit" do
     let(:user) { FactoryGirl.build(:user) }
-    let(:password) { user.password }
+    let!(:password) { user.password }
     before do
-      password # evaluate
       user.save
       capybara_login(user.email, password)
       visit edit_user_path(user)
