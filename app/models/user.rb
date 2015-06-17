@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
 
+  enum role: { user: 'user', admin: 'admin' }
+
   before_save do
     self.email.downcase!
     self.username.downcase!
