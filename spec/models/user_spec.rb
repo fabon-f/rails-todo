@@ -122,6 +122,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  it { should respond_to :admin? }
+  it "admin? method should return false" do
+    expect(subject.admin?).to be false
+  end
+
+  describe "admin user" do
+    let(:admin) { FactoryGirl.create(:admin) }
+    it "admin? method should return true" do
+      expect(admin.admin?).to be true
+    end
+  end
+
   describe "task association" do
     before { @user.save }
     let!(:task) { FactoryGirl.create(:task, user: @user) }
