@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get '/login', to: 'user_sessions#new'
   delete '/logout', to: 'user_sessions#destroy'
 
+  namespace :admin do
+    root 'static_pages#home'
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
