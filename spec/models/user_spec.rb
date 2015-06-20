@@ -122,6 +122,23 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "when role is valid" do
+    it "should be valid" do
+      valid_roles = %w[user admin]
+      valid_roles.each do |role|
+        @user.role = role
+        expect(@user).to be_valid
+      end
+    end
+  end
+
+  describe "when role is invalid" do
+    it "should be invalid" do
+      @user.role = 'hoge'
+      expect(@user).not_to be_valid
+    end
+  end
+
   it { should respond_to :admin? }
   it "admin? method should return false" do
     expect(subject.admin?).to be false
