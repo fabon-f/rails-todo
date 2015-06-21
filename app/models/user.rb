@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
 
   before_save do
-    self.email.downcase!
-    self.username.downcase!
+    email.downcase!
+    username.downcase!
   end
 
   authenticates_with_sorcery!
@@ -23,6 +23,6 @@ class User < ActiveRecord::Base
   end
 
   def correct_password?(password)
-    User.authenticate(self.email, password) == self
+    User.authenticate(email, password) == self
   end
 end
