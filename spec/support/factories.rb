@@ -8,8 +8,8 @@ FactoryGirl.define do
 
   factory :admin, class: User do
     email "admin@example.com"
-    password "hogefuga"
-    password_confirmation "hogefuga"
+    password "admin_user"
+    password_confirmation "admin_user"
     username "admin_user"
     role "admin"
   end
