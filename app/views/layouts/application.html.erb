@@ -17,7 +17,10 @@
     <% flash.each do |key, value| %>
       <div class="row">
         <div class="large-12 column">
-          <%= content_tag(:div, value, class: "alert-box radius #{key}") %>
+          <%= content_tag(:div, class: "alert-box radius #{key}", data: { alert: nil }) do %>
+            <%= value %>
+            <button class="close">&times;</button>
+          <% end %>
         </div>
       </div>
     <% end %>
