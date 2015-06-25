@@ -1494,3 +1494,8 @@ $include-html-global-classes: $include-html-classes;
 .alert-box.notice {
   @extend .alert-box.info;
 }
+
+.row-full {
+  @extend .row;
+  max-width: initial;
+}

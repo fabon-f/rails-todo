@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "AdminPages", type: :feature do
+  subject { page }
   shared_context 'as admin user' do
     let(:admin) { FactoryGirl.build(:admin) }
     let!(:password) { admin.password }
@@ -35,5 +36,6 @@ RSpec.feature "AdminPages", type: :feature do
       before { visit admin_root_path }
     end
     it { should have_title 'Admin page' }
+    it { should have_selector 'h1', text: 'Admin page' }
   end
 end
